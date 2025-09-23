@@ -3,193 +3,250 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BenO’s Amazon Recommendations & Buyer’s Guides</title>
-  <meta name="description" content="Practical buyer’s guides and gear I actually use for sustainable fitness. As an Amazon Associate I earn from qualifying purchases.">
+  <title>BenO’s Buyer’s Guides & Amazon Picks</title>
+  <meta name="description" content="Sustainable fitness made simple. Practical buyer’s guides and gear I actually use. As an Amazon Associate I earn from qualifying purchases.">
   <link rel="canonical" href="https://benolaaa.github.io/recommendations.html">
   <style>
     :root{
-      --bg:#fff;--bg-soft:#f6f7f9;--text:#111;--muted:#585c63;
-      --pill:#e9ecf2;--pill-active:#111;--pill-active-text:#fff;
-      --card:#fff;--shadow:0 10px 30px rgba(0,0,0,.08);
-      --radius:20px;--gap:clamp(16px,3vw,28px);--maxw:1100px;
-      --ring:0 0 0 2px rgba(0,0,0,.08)
+      --bg:#ffffff;--bg-soft:#f7f8fa;--text:#0f1222;--muted:#6b7280;
+      --pill:#e9eef7;--pill-active:#0f1222;--pill-active-text:#ffffff;
+      --card:#ffffff;--shadow:0 10px 30px rgba(0,0,0,.08);
+      --gap:clamp(14px,2.2vw,22px);--maxw:1040px;
+      --radius:18px
     }
     @media (prefers-color-scheme: dark){
       :root{
-        --bg:#0b0c0f;--bg-soft:#12141a;--text:#f5f7fb;--muted:#a5adba;
-        --pill:#1d2230;--pill-active:#f5f7fb;--pill-active-text:#0b0c0f;
-        --card:#0e1117;--shadow:0 10px 30px rgba(0,0,0,.5);
-        --ring:0 0 0 2px rgba(255,255,255,.08)
+        --bg:#0b0d13;--bg-soft:#121622;--text:#f4f6fb;--muted:#a3acc2;
+        --pill:#1a2136;--pill-active:#fafcff;--pill-active-text:#0b0d13;
+        --card:#0f1422;--shadow:0 10px 30px rgba(0,0,0,.5)
       }
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%;height:auto}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
+    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(12px);
+      background:color-mix(in srgb,var(--bg) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--muted) 22%,transparent)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;height:56px}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .disclosure{font-size:.86rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .hero{padding:28px 0 8px}
+    .hero h1{margin:0 0 6px;font-size:clamp(26px,4.6vw,40px);letter-spacing:-.02em;line-height:1.08}
+    .hero p{margin:0;color:var(--muted);font-size:1.03rem}
 
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(14px);
-      background:color-mix(in srgb,var(--bg) 85%,transparent);
-      border-bottom:1px solid color-mix(in srgb,var(--muted) 25%,transparent)}
-    .nav-inner{max-width:var(--maxw);margin:0 auto;padding:.75rem var(--gap);display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-weight:800}
-    .disclosure{font-size:.85rem;color:var(--muted)}
-
-    .wrap{max-width:var(--maxw);margin:36px auto;padding:0 var(--gap)}
-    .hero h1{margin:0 0 6px;font-size:clamp(28px,5vw,44px);letter-spacing:-.02em;line-height:1.08}
-    .hero p{margin:0;color:var(--muted);font-size:1.05rem}
-
-    .guide{margin:28px 0 10px;padding:20px;border-radius:16px;background:var(--bg-soft);border:1px solid color-mix(in srgb,var(--muted) 20%,transparent)}
-    .guide h2{margin:.2rem 0 8px;font-size:clamp(22px,3.2vw,28px)}
+    .guide{margin:18px 0;padding:16px;border-radius:14px;background:var(--bg-soft);
+      border:1px solid color-mix(in srgb,var(--muted) 20%,transparent)}
+    .guide h2{margin:.25rem 0 6px;font-size:clamp(20px,3.2vw,26px)}
     .guide p{margin:.4rem 0;color:var(--muted)}
     .guide ul{margin:.4rem 0 0 1.1rem}
     .guide li{margin:.25rem 0}
 
-    .tabs{margin:24px 0 8px}
+    .tabs{margin:18px 0 10px}
     .pillbar{display:flex;gap:10px;overflow:auto;padding:6px;border-radius:999px;background:var(--bg-soft);scrollbar-width:none}
     .pillbar::-webkit-scrollbar{display:none}
-    .pill{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--text);font-weight:700;font-size:.95rem;opacity:.9;transition:all .2s ease;border:1px solid color-mix(in srgb,var(--muted) 15%,transparent)}
-    .pill[aria-selected="true"]{background:var(--pill-active);color:var(--pill-active-text);opacity:1;box-shadow:var(--ring)}
-    .pill:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--pill-active) 40%,transparent)}
+    .pill{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--text);
+      font-weight:700;font-size:.95rem;opacity:.95;transition:all .2s ease;border:1px solid color-mix(in srgb,var(--muted) 14%,transparent)}
+    .pill[aria-selected="true"]{background:var(--pill-active);color:var(--pill-active-text);opacity:1;box-shadow:0 0 0 2px color-mix(in srgb,var(--pill-active) 35%,transparent)}
+    .pill:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--pill-active) 50%,transparent)}
 
-    .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(12,1fr)}
-    @media (max-width:980px){.grid{grid-template-columns:repeat(6,1fr)}}
-    @media (max-width:620px){.grid{grid-template-columns:repeat(4,1fr)}}
-
-    .card{grid-column:span 4;background:var(--card);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);
-      border:1px solid color-mix(in srgb,var(--muted) 15%,transparent);display:flex;flex-direction:column;min-height:100%;
-      transition:transform .2s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
-    @media (max-width:980px){.card{grid-column:span 6}}
-    @media (max-width:620px){.card{grid-column:span 4}}
-
-    .media{position:relative;aspect-ratio:16/10;background:var(--bg-soft)}
+    /* clean, auto-fit grid so cards align */
+    .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(280px,1fr));align-items:stretch}
+    .card{display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);
+      border:1px solid color-mix(in srgb,var(--muted) 14%,transparent);box-shadow:var(--shadow);overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+    .card:hover{transform:translateY(-2px)}
+    .media{position:relative;aspect-ratio:4/3;background:var(--bg-soft)}
     .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;left:12px;top:12px;background:color-mix(in srgb,var(--bg) 80%,transparent);padding:6px 10px;border-radius:999px;font-size:.8rem;font-weight:800;border:1px solid color-mix(in srgb,var(--muted) 20%,transparent)}
-    .body{padding:16px 16px 12px;display:flex;flex-direction:column;gap:8px}
-    .title{font-weight:800;letter-spacing:.2px;font-size:1.05rem;line-height:1.25}
+    .badge{position:absolute;left:12px;top:12px;background:color-mix(in srgb,var(--bg) 85%,transparent);
+      padding:6px 10px;border-radius:999px;font-size:.78rem;font-weight:800;border:1px solid color-mix(in srgb,var(--muted) 22%,transparent)}
+    .body{padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px;min-height:220px}
+    .title{font-weight:800;letter-spacing:.2px;font-size:1.05rem;line-height:1.28}
     .desc{color:var(--muted);font-size:.95rem}
-    .actions{margin-top:auto;display:flex;gap:10px;align-items:center}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;font-weight:800;border:1px solid transparent;background:var(--text);color:var(--bg);transition:transform .15s ease,opacity .2s ease}
-    .btn:hover{transform:translateY(-1px);opacity:.9}
-    .btn.secondary{background:transparent;color:inherit;border-color:color-mix(in srgb,var(--muted) 25%,transparent)}
+    .actions{margin-top:auto;display:flex;gap:10px}
+    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:12px;
+      font-weight:800;border:1px solid transparent;background:var(--text);color:var(--bg);transition:transform .15s ease,opacity .18s ease}
+    .btn:hover{transform:translateY(-1px);opacity:.92}
+    .btn.secondary{background:transparent;color:inherit;border-color:color-mix(in srgb,var(--muted) 28%,transparent)}
 
-    .footnote{margin:28px 0 60px;color:var(--muted);font-size:.9rem}
-    .fade-in{animation:fade .35s ease both}
-    @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+    .footnote{padding:26px 0 60px;color:var(--muted);font-size:.9rem}
   </style>
 </head>
 <body>
   <header class="nav">
-    <div class="nav-inner">
+    <div class="container nav-inner">
       <div class="brand">BenO <span style="opacity:.7;font-weight:700">Recommends</span></div>
       <div class="disclosure">As an Amazon Associate, I earn from qualifying purchases.</div>
     </div>
   </header>
 
-  <div class="wrap hero" aria-labelledby="hero-title">
+  <section class="container hero" aria-labelledby="hero-title">
     <h1 id="hero-title">Buyer’s Guides & Gear I Actually Use</h1>
-    <p>Practical, sustainable fitness for real life. Each pick includes what it’s good for, who it’s not for, and a quick tip so you can buy with confidence.</p>
-  </div>
+    <p>Practical, sustainable fitness for real life. Each pick explains what it’s best for, who it isn’t for, and tips to help you buy with confidence.</p>
+  </section>
 
-  <!-- Helpful content blocks (adds real value beyond links) -->
-  <div class="wrap guide">
+  <!-- Helpful content (meaty, non-link value) -->
+  <section class="container guide">
     <h2>Walking Pad & Treadmill Guide — What to Look For</h2>
-    <p>My clients use walking pads for Zone-2 and desk steps. Here’s what matters most:</p>
+    <p>Clients use walking pads for Zone-2 and desk steps. Here’s how to choose the right one:</p>
     <ul>
-      <li><strong>Deck length:</strong> 43–47″ for walking; 50″+ if you have a longer stride.</li>
-      <li><strong>Noise:</strong> under ~60 dB if you share space or take calls.</li>
-      <li><strong>Max speed:</strong> 3–4 mph is fine for walking; you don’t need 7–10 mph.</li>
-      <li><strong>Controls:</strong> remote or app; safety auto-stop is a plus.</li>
-      <li><strong>Storage:</strong> under-sofa height & wheels make it effortless to put away.</li>
+      <li><strong>Deck length:</strong> 43–47″ works for walking; go 50″+ if you’re taller or have a longer stride.</li>
+      <li><strong>Noise:</strong> under ~60 dB keeps calls & roommates happy. Brushed motors tend to be louder over time.</li>
+      <li><strong>Max speed:</strong> 3–4 mph is enough for walking and Zone-2; running speeds add cost & size.</li>
+      <li><strong>Controls & safety:</strong> simple remote/app, auto-stop, and a stable deck beat flashy features.</li>
+      <li><strong>Storage:</strong> wheels + <em>under-sofa height</em> means you’ll actually put it away and keep using it.</li>
     </ul>
-  </div>
+  </section>
 
-  <div class="wrap guide">
+  <section class="container guide">
     <h2>Scales & Tracking — Keep It Simple</h2>
-    <p>Weekly trends beat daily swings. Pair a smart scale with a food scale so protein and calories match your plan.</p>
-  </div>
+    <p>Weekly trends beat daily swings. Pair a smart body scale with a 1-gram food scale so protein and calories match your plan—no obsession, just honest data.</p>
+  </section>
 
-  <div class="wrap">
+  <section class="container">
     <nav class="tabs" role="tablist" aria-label="Categories">
       <div class="pillbar" id="pillbar"></div>
     </nav>
+
     <main class="grid" id="grid" aria-live="polite" aria-busy="false"></main>
 
     <div class="footnote">
-      <p><strong>Disclosure:</strong> As an Amazon Associate, I earn from qualifying purchases. Prices and availability may change. Links open on Amazon.com with my US tracking ID (<code>boamazon0b3-20</code>); Canadian visitors are automatically redirected to Amazon.ca via OneLink with my CA ID (<code>boamazon03-20</code>).</p>
-      <p>Last updated: <span id="lastUpdated"></span> · Contact: benolaaa (GitHub)</p>
+      <p><strong>Disclosure:</strong> As an Amazon Associate, I earn from qualifying purchases. Prices and availability may change. Links open on Amazon.com with my affiliate tag applied automatically; Canadian visitors are redirected to Amazon.ca by OneLink.</p>
+      <p>Last updated: <span id="lastUpdated"></span></p>
     </div>
-  </div>
+  </section>
 
   <script>
-    // ——— Utility: safely encode text
+    // Utility
     const escapeHtml = (s)=>s.replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 
-    // ——— Force every Amazon click to include your US tag (boamazon0b3-20)
+    // Force every Amazon click to include your US tag (boamazon0b3-20).
+    // OneLink will handle Canada automatically when users land on Amazon.
     function withAmazonTag(url){
-      // If it already has a ?tag= param, keep it
       try{
         const u = new URL(url);
         if (/amazon\./i.test(u.hostname)){
           if (!u.searchParams.has("tag")){
-            u.searchParams.set("tag","boamazon0b3-20"); // US ID
+            u.searchParams.set("tag","boamazon0b3-20");
           }
           return u.toString();
         }
       }catch(e){}
-      // For amzn.to or any other link, route via Amazon redirect with your tag
+      // For amzn.to or any non-amazon link, route via Amazon redirect with your tag.
       return "https://www.amazon.com/gp/redirect.html?tag=boamazon0b3-20&linkCode=ur1&destination="+encodeURIComponent(url);
     }
 
-    // ——— Data (you can add/remove items freely)
-    // Tip: You can paste ANY Amazon URL (short or long). The script will enforce your tag.
+    // Content — longer, buyer-friendly blurbs
     const products = [
       {
         category: "Treadmills & Walking Pads",
         items: [
-          { title: "Best Budget Walking Pad (Quiet apartments)", href: "https://amzn.to/4mIhqPA", image: "./img/Treadmill%201.jpg", note: "Under-desk friendly; compact, quiet motor. Great for Zone-2 at work." },
-          { title: "Starter Treadmill (Everyday walking)", href: "https://amzn.to/4fAeqlT", image: "./img/Treadmill%202.jpg", note: "Simple controls, foldable frame. Good for steady incline walks." },
-          { title: "Compact Treadmill (Small spaces)", href: "https://amzn.to/4lzpwcd", image: "./img/Treadmill%203.jpg", note: "Shorter deck; best for users under ~6'0\" or short-stride walking." },
-          { title: "Smooth-belt Option (Easy controls)", href: "https://amzn.to/3UYU2kR", image: "./img/Treamill%205.jpg", note: "Softer deck feel; nice for longer sessions." },
-          { title: "Incline Walking Pad (1.5–8%)", href: "https://amzn.to/45CUx9i", image: "./img/walking%20pad.jpg", note: "Adds mild incline without bulk. Pairs well with a standing desk." }
+          { 
+            title: "Best Budget Walking Pad (Quiet apartments)",
+            href: "https://amzn.to/4mIhqPA",
+            image: "./img/Treadmill%201.jpg",
+            note: "Compact under-desk pad with a surprisingly quiet motor. Ideal for 1–3 mph Zone-2 while working or watching TV. Not for running; deck length suits most walkers up to ~6'0\". Tip: set a daily 30–60 min reminder so steps add up without thinking."
+          },
+          { 
+            title: "Starter Treadmill (Everyday walking)",
+            href: "https://amzn.to/4fAeqlT",
+            image: "./img/Treadmill%202.jpg",
+            note: "Foldable frame, simple controls, and reliable belt tracking. Great for steady incline walks and casual conditioning. If you’re a tall user or want faster speeds, look at a longer-deck model; otherwise this nails the basics at a friendly price."
+          },
+          { 
+            title: "Compact Treadmill (Small spaces)",
+            href: "https://amzn.to/4lzpwcd",
+            image: "./img/Treadmill%203.jpg",
+            note: "Space-saving unit with a shorter deck that fits tight rooms. Best for users with shorter stride lengths or for quick step sessions. Low profile stores under a bed or sofa so it doesn’t dominate your living room. Keep belt lubricated every ~3 months."
+          },
+          { 
+            title: "Smooth-Belt Option (Easy controls)",
+            href: "https://amzn.to/3UYU2kR",
+            image: "./img/Treamill%205.jpg",
+            note: "Smoother deck feel for longer sessions; handy remote/app makes speed changes painless. Perfect if you want a touch more comfort without the footprint of a full treadmill. Not built for sprints; shines at consistent, low-impact walking."
+          },
+          { 
+            title: "Incline Walking Pad (1.5–8%)",
+            href: "https://amzn.to/45CUx9i",
+            image: "./img/walking%20pad.jpg",
+            note: "Adds gentle incline to raise heart rate without raising speed—useful for desk setups. Wheels + low height make storage effortless. Choose this if you want slightly harder sessions in the same time block. Start at 2% and progress slowly."
+          }
         ]
       },
       {
         category: "Shoes",
         items: [
-          { title: "Daily Trainer Running Shoe", href: "https://amzn.to/4oAnXxi", image: "./img/Nike%20shoe.jpg", note: "Comfortable neutral ride for walks, easy jogs, and long days on feet." }
+          { 
+            title: "Daily Trainer Running Shoe",
+            href: "https://amzn.to/4oAnXxi",
+            image: "./img/Nike%20shoe.jpg",
+            note: "Neutral, cushioned ride that works for walking, easy jogs, and all-day wear. Breathable upper keeps feet cool; midsole has enough bounce without feeling unstable. If you need motion control, pick a stability model instead."
+          }
         ]
       },
       {
         category: "Scales",
         items: [
-          { title: "Smart Body Scale", href: "https://amzn.to/3JcSG3r", image: "./img/Smart%20Body%20weight%20Scale.jpg", note: "Tracks weekly trends; app sync keeps you honest without obsessing." },
-          { title: "Food Scale (1-g accuracy)", href: "https://amzn.to/45GyjTY", image: "./img/smart%20food%20scale.jpg", note: "Makes hitting protein and calories painless. Tiny footprint." }
+          { 
+            title: "Smart Body Scale (App-connected)",
+            href: "https://amzn.to/3JcSG3r",
+            image: "./img/Smart%20Body%20weight%20Scale.jpg",
+            note: "Logs weight automatically and shows weekly trends so you don’t obsess over daily fluctuations. Pairs with Apple/Google Health. Place on hard flooring for accuracy; weigh under the same conditions (AM, post-bathroom) for consistent data."
+          },
+          { 
+            title: "Food Scale (1-gram accuracy)",
+            href: "https://amzn.to/45GyjTY",
+            image: "./img/smart%20food%20scale.jpg",
+            note: "Small, fast, and precise—perfect for dialing in protein and portions without turning meals into math class. Tare function makes recipe prep easy. Use it for a few weeks each quarter to re-calibrate eyeballing skills."
+          }
         ]
       },
       {
         category: "Accessories",
         items: [
-          { title: "Adjustable Workout Bench", href: "https://amzn.to/41InFuq", image: "./img/workout%20bench.jpg", note: "Flat-to-upright angles; folds away. Solid home-gym anchor." },
-          { title: "Hydration Bottle with Tracker", href: "https://amzn.to/47uu0gO", image: "./img/water%20bottle.jpg", note: "Habit-friendly reminders so water stays effortless." }
+          { 
+            title: "Adjustable Workout Bench",
+            href: "https://amzn.to/41InFuq",
+            image: "./img/workout%20bench.jpg",
+            note: "Solid base for dumbbell work—flat to upright positions with a quick ladder adjustment. Folds to save space and supports most home-gym loads. Match with a set of adjustable dumbbells for a complete strength setup."
+          },
+          { 
+            title: "Hydration Bottle with Tracker",
+            href: "https://amzn.to/47uu0gO",
+            image: "./img/water%20bottle.jpg",
+            note: "Time-stamped cues nudge you to drink consistently instead of chugging at night. Durable, leak-resistant lid makes it work-bag friendly. Replace every 6–12 months if you’re using flavored mixes to keep it fresh."
+          }
         ]
       },
       {
         category: "Supplements",
         items: [
-          { title: "Creatine Monohydrate", href: "https://amzn.to/4mnY9Dm", image: "./img/Creatine.jpg", note: "Well-researched boost for strength and training volume." },
-          { title: "Ready-to-Drink Protein Shake", href: "https://amzn.to/416N7ts", image: "./img/protein%20shake.jpg", note: "Convenient protein for busy days; good taste/texture." }
+          { 
+            title: "Creatine Monohydrate (Unflavored)",
+            href: "https://amzn.to/4mnY9Dm",
+            image: "./img/Creatine.jpg",
+            note: "Evidence-based strength and performance support. 3–5 g daily; no cycling needed. Mix with any drink—unflavored dissolves best in warm liquids. Expect a small uptick in body weight from muscle water content (it’s normal)."
+          },
+          { 
+            title: "Ready-to-Drink Protein Shake",
+            href: "https://amzn.to/416N7ts",
+            image: "./img/protein%20shake.jpg",
+            note: "High-protein, low effort option for busy days or post-workout. Shelf-stable cartons live in your desk or car. Use to bridge the gap on low-protein meals; whole foods still anchor most days."
+          }
         ]
       },
       {
         category: "Books",
         items: [
-          { title: "Spiral Journal Bible", href: "https://amzn.to/4mh01O8", image: "./img/spiral%20bound%20Journaling%20bible.jpg", note: "Lay-flat for notes and reflection; durable paper." }
+          { 
+            title: "Spiral Journal Bible (Lay-flat)",
+            href: "https://amzn.to/4mh01O8",
+            image: "./img/spiral%20bound%20Journaling%20bible.jpg",
+            note: "Durable paper with generous margins for notes and reflection. Lay-flat spiral makes daily reading + journaling practical. Pair with a fine-tip pen or highlighters that don’t bleed through."
+          }
         ]
       }
     ];
 
-    // ——— UI rendering
     const pillbar = document.getElementById('pillbar');
     const grid = document.getElementById('grid');
 
@@ -208,10 +265,10 @@
 
     function placeholderSvg(){
       return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 750'>
-          <defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='#dcdce0'/><stop offset='1' stop-color='#c8c8ce'/></linearGradient></defs>
-          <rect fill='url(#g)' width='1200' height='750'/>
-          <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Helvetica,Arial' font-size='48' fill='#6e6e73'>Product image</text>
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'>
+          <defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='#dfe3ec'/><stop offset='1' stop-color='#cfd6e4'/></linearGradient></defs>
+          <rect fill='url(#g)' width='1200' height='900'/>
+          <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Helvetica,Arial' font-size='48' fill='#6b7280'>Product image</text>
         </svg>`
       );
     }
@@ -220,7 +277,7 @@
       const img = (item.image && item.image.trim()!=="") ? item.image : placeholderSvg();
       const url = withAmazonTag(item.href);
       return `
-        <article class="card fade-in">
+        <article class="card">
           <div class="media">
             <img alt="${escapeHtml(item.title)}" loading="lazy" src="${img}">
             <div class="badge">Editor’s pick</div>
@@ -248,10 +305,8 @@
       renderCards(i);
     }
 
-    // ——— Footer date
     document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'long'});
 
-    // ——— Boot
     renderPills();
     renderCards(0);
   </script>
