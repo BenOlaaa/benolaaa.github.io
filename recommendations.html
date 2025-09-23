@@ -3,303 +3,173 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BenO’s Buyer’s Guides & Amazon Picks</title>
-  <meta name="description" content="Sustainable fitness made simple. Practical buyer’s guides and gear I actually use. As an Amazon Associate I earn from qualifying purchases.">
-  <link rel="canonical" href="https://benolaaa.github.io/recommendations.html">
+  <title>BenO’s Amazon Recommendations</title>
+  <meta name="description" content="Buyer’s guides & tools I actually use. Practical tips, longer descriptions, and curated affiliate picks.">
   <style>
     :root{
-      --bg:#ffffff;--bg-soft:#f6f7fb;--text:#101320;--muted:#6b7280;
-      --pill:#e9eef7;--pill-active:#101320;--pill-active-text:#ffffff;
-      --card:#ffffff;--shadow:0 10px 26px rgba(0,0,0,.08);
-      --gap:clamp(14px,2.2vw,22px);--maxw:1040px;--radius:16px
+      --bg:#fff;--bg-soft:#f9f9fb;--text:#111;--muted:#555;
+      --card:#fff;--shadow:0 8px 24px rgba(0,0,0,.08);
+      --radius:16px;--gap:clamp(16px,3vw,28px);--maxw:1200px;
     }
     @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0d13;--bg-soft:#121622;--text:#f5f7fb;--muted:#a3acc2;
-        --pill:#1b2236;--pill-active:#fafcff;--pill-active-text:#0b0d13;
-        --card:#0e1422;--shadow:0 10px 28px rgba(0,0,0,.45)
-      }
+      :root{--bg:#000;--bg-soft:#111;--text:#f5f5f7;--muted:#aaa;--card:#111;--shadow:0 8px 28px rgba(0,0,0,.5);}
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    body{margin:0;padding:0;background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,system-ui,Roboto,Arial}
     a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%;height:auto}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
-
-    /* Top bar */
-    .nav{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(12px);
-      background:color-mix(in srgb,var(--bg) 90%,transparent);border-bottom:1px solid color-mix(in srgb,var(--muted) 22%,transparent)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px}
-    .brand{font-weight:800;letter-spacing:.2px}
-    .disclosure{font-size:.86rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-    /* Intro */
-    .hero{padding:28px 0 8px}
-    .hero h1{margin:0 0 6px;font-size:clamp(26px,4.6vw,40px);letter-spacing:-.02em;line-height:1.08}
-    .hero p{margin:0;color:var(--muted);font-size:1.03rem}
-
-    /* Category tabs */
-    .tabs{margin:18px 0 14px}
-    .pillbar{display:flex;gap:10px;overflow:auto;padding:6px;border-radius:999px;background:var(--bg-soft);scrollbar-width:none}
-    .pillbar::-webkit-scrollbar{display:none}
-    .pill{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--text);
-      font-weight:700;font-size:.95rem;opacity:.95;transition:all .2s ease;border:1px solid color-mix(in srgb,var(--muted) 14%,transparent)}
-    .pill[aria-selected="true"]{background:var(--pill-active);color:var(--pill-active-text);opacity:1;box-shadow:0 0 0 2px color-mix(in srgb,var(--pill-active) 35%,transparent)}
-    .pill:focus-visible{outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--pill-active) 50%,transparent)}
-
-    /* Category heading */
-    .category-title{margin:6px 0 12px;font-weight:800;letter-spacing:.3px}
-
-    /* Clean, auto-fit grid */
-    .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(280px,1fr));align-items:stretch}
-    .card{display:flex;flex-direction:column;background:var(--card);border-radius:var(--radius);
-      border:1px solid color-mix(in srgb,var(--muted) 14%,transparent);box-shadow:var(--shadow);overflow:hidden;transition:transform .18s ease}
-    .card:hover{transform:translateY(-2px)}
-    .media{position:relative;aspect-ratio:4/3;background:var(--bg-soft)}
-    .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-    .badge{position:absolute;left:12px;top:12px;background:color-mix(in srgb,var(--bg) 85%,transparent);
-      padding:6px 10px;border-radius:999px;font-size:.78rem;font-weight:800;border:1px solid color-mix(in srgb,var(--muted) 22%,transparent)}
-    .body{padding:14px 14px 12px;display:flex;flex-direction:column;gap:10px;min-height:260px}
-    .title{font-weight:800;letter-spacing:.2px;font-size:1.05rem;line-height:1.28}
-    .desc{color:var(--muted);font-size:.95rem}
+    img{display:block;max-width:100%;height:auto;border-radius:12px}
+    header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid #eaeaea;z-index:50}
+    header .inner{max-width:var(--maxw);margin:0 auto;padding:.75rem var(--gap);display:flex;justify-content:space-between;align-items:center}
+    .brand{font-weight:700;font-size:1.1rem}
+    .disclosure{font-size:.85rem;color:var(--muted)}
+    .hero{max-width:var(--maxw);margin:32px auto 16px;padding:0 var(--gap)}
+    .hero h1{margin:0;font-size:clamp(28px,4vw,40px);line-height:1.2}
+    .hero p{margin:8px 0 0;color:var(--muted)}
+    .guides{max-width:var(--maxw);margin:20px auto;padding:0 var(--gap);display:grid;gap:20px}
+    .guide{background:var(--bg-soft);padding:16px;border-radius:var(--radius)}
+    .guide h2{margin:0 0 8px;font-size:1.1rem}
+    .grid{max-width:var(--maxw);margin:32px auto;padding:0 var(--gap);display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:12px;transition:transform .2s}
+    .card:hover{transform:translateY(-3px)}
+    .title{font-weight:700;font-size:1.05rem}
+    .desc{font-size:.92rem;color:var(--muted)}
     .actions{margin-top:auto;display:flex;gap:10px}
-    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 12px;border-radius:12px;
-      font-weight:800;border:1px solid transparent;background:var(--text);color:var(--bg);transition:transform .15s ease,opacity .18s ease}
-    .btn:hover{transform:translateY(-1px);opacity:.92}
-    .btn.secondary{background:transparent;color:inherit;border-color:color-mix(in srgb,var(--muted) 28%,transparent)}
-
-    .footnote{padding:26px 0 60px;color:var(--muted);font-size:.9rem}
+    .btn{flex:1;text-align:center;padding:10px 14px;border-radius:10px;font-weight:600;background:var(--text);color:var(--bg);transition:opacity .2s}
+    .btn:hover{opacity:.85}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid #ccc}
+    .footnote{max-width:var(--maxw);margin:40px auto;padding:0 var(--gap);font-size:.85rem;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
-  <!-- Top bar -->
-  <header class="nav">
-    <div class="container nav-inner">
-      <div class="brand">BenO <span style="opacity:.7;font-weight:700">Recommends</span></div>
-      <div class="disclosure">As an Amazon Associate, I earn from qualifying purchases.</div>
+  <header>
+    <div class="inner">
+      <div class="brand">BenO Recommends</div>
+      <div class="disclosure">As an Amazon Associate I earn from qualifying purchases.</div>
     </div>
   </header>
 
-  <!-- Intro -->
-  <section class="container hero" aria-labelledby="hero-title">
-    <h1 id="hero-title">Buyer’s Guides & Gear I Actually Use</h1>
-    <p>Practical, sustainable fitness for real life. Each pick explains what it’s best for, who it isn’t for, and simple tips so you can buy once and use it often.</p>
+  <section class="hero">
+    <h1>Buyer’s Guides & Gear I Actually Use</h1>
+    <p>Practical, sustainable fitness for real life. Each pick includes what it’s good for, who it’s not for, and a quick tip so you can buy with confidence.</p>
   </section>
 
-  <section class="container">
-    <!-- Tabs -->
-    <nav class="tabs" role="tablist" aria-label="Categories">
-      <div class="pillbar" id="pillbar"></div>
-    </nav>
-
-    <!-- Category title + cards -->
-    <h2 class="category-title" id="catTitle"></h2>
-    <main class="grid" id="grid" aria-live="polite" aria-busy="false"></main>
-
-    <div class="footnote">
-      <p><strong>Disclosure:</strong> As an Amazon Associate, I earn from qualifying purchases. Prices and availability may change. All Amazon links apply my US affiliate tag automatically; Canadian visitors are redirected to Amazon.ca by OneLink.</p>
-      <p>Last updated: <span id="lastUpdated"></span></p>
+  <section class="guides">
+    <div class="guide">
+      <h2>Walking Pad & Treadmill Guide — What to Look For</h2>
+      <ul>
+        <li><strong>Deck length:</strong> 43–47″ for walking; 50″+ if you have a longer stride.</li>
+        <li><strong>Noise:</strong> under ~60 dB if you share space or take calls.</li>
+        <li><strong>Max speed:</strong> 3–4 mph is fine for walking; you don’t need 10 mph.</li>
+        <li><strong>Controls:</strong> remote or app; safety auto-stop is a plus.</li>
+        <li><strong>Storage:</strong> under-sofa height & wheels make it effortless to put away.</li>
+      </ul>
+    </div>
+    <div class="guide">
+      <h2>Scales & Tracking — Keep It Simple</h2>
+      <p>Weekly trends beat daily swings. Pair a smart scale with a food scale so protein and calories match your plan.</p>
     </div>
   </section>
 
-  <script>
-    // Utility
-    const escapeHtml = (s)=>s.replace(/[&<>"']/g, c=>({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  <main class="grid" id="grid"></main>
 
-    // Force every Amazon click to include your US tag (boamazon0b3-20).
+  <div class="footnote">
+    <p><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases. Prices and availability may change.</p>
+  </div>
+
+  <script>
+    // Affiliate helper
     function withAmazonTag(url){
       try{
         const u = new URL(url);
-        if (/amazon\./i.test(u.hostname)){
-          if (!u.searchParams.has("tag")){
-            u.searchParams.set("tag","boamazon0b3-20");
-          }
+        if (/^amzn\.to$/i.test(u.hostname)) return u.toString(); // short link stays
+        if (/\.amazon\./i.test(u.hostname)){
+          if (!u.searchParams.has("tag")) u.searchParams.set("tag","boamazon0b3-20");
           return u.toString();
         }
       }catch(e){}
-      // For amzn.to or any non-amazon link, route via Amazon redirect.
-      return "https://www.amazon.com/gp/redirect.html?tag=boamazon0b3-20&linkCode=ur1&destination="+encodeURIComponent(url);
+      return url;
     }
 
-    // Content — longer blurbs for each item
     const products = [
       {
-        category: "Treadmills & Walking Pads",
-        items: [
-          { 
-            title: "Best Budget Walking Pad (Quiet apartments)",
-            href: "https://amzn.to/4mIhqPA",
-            image: "./img/Treadmill%201.jpg",
-            note: "Under-desk pad with a quiet motor and low profile—great for 1–3 mph Zone-2 while working or watching shows. Stores under a sofa/bed so it won’t take over your living room. Not for running; deck length suits most walkers up to ~6'0\". Tip: set a 30–60 min daily reminder; steps add up without effort."
-          },
-          { 
-            title: "Starter Treadmill (Everyday walking)",
-            href: "https://amzn.to/4fAeqlT",
-            image: "./img/Treadmill%202.jpg",
-            note: "Foldable frame and reliable belt tracking. Simple controls = easy habit. Perfect for steady incline walks and casual conditioning. If you’re taller or want faster speeds, upgrade to a longer deck; otherwise this nails the basics at a friendly price."
-          },
-          { 
-            title: "Compact Treadmill (Small spaces)",
-            href: "https://amzn.to/4lzpwcd",
-            image: "./img/Treadmill%203.jpg",
-            note: "Shorter deck fits tight rooms but still handles daily walking. Best for shorter stride lengths or quick step sessions. Wheels + low height make storage painless. Keep the belt lubricated every ~3 months for smooth performance."
-          },
-          { 
-            title: "Smooth-Belt Option (Easy controls)",
-            href: "https://amzn.to/3UYU2kR",
-            image: "./img/Treamill%205.jpg",
-            note: "Softer deck feel for longer sessions; remote/app speed control is convenient when you’re at a desk. Not designed for sprints—shines at consistent, low-impact walking. A good middle ground if you want comfort without a huge footprint."
-          },
-          { 
-            title: "Incline Walking Pad (1.5–8%)",
-            href: "https://amzn.to/45CUx9i",
-            image: "./img/walking%20pad.jpg",
-            note: "Gentle incline raises heart rate without raising speed—great for short windows of time. Under-sofa height, easy to roll away. Start at 2% incline, progress slowly, and keep cadence natural to avoid calf tightness."
-          }
-        ]
+        title: "Best Budget Walking Pad (Quiet apartments)",
+        href: "https://amzn.to/4mIhqPA",
+        image: "./img/walking-pad.jpg",
+        desc: "Compact and quiet walking pad ideal for under-desk use or small apartments. Runs smoothly at walking speeds (3–4 mph max). Great for Zone-2 cardio while working."
       },
       {
-        category: "Shoes",
-        items: [
-          { 
-            title: "Daily Trainer Running Shoe",
-            href: "https://amzn.to/4oAnXxi",
-            image: "./img/Nike%20shoe.jpg",
-            note: "Neutral, cushioned ride that works for long walks, easy jogs, and all-day wear. Breathable upper keeps feet cool; midsole has bounce without instability. If you need motion control, choose a stability model instead."
-          }
-        ]
+        title: "Starter Treadmill (Everyday walking)",
+        href: "https://amzn.to/4fAeqlT",
+        image: "./img/treadmill2.jpg",
+        desc: "Affordable treadmill with a foldable frame and basic incline options. Perfect for daily walking sessions or steady low-impact cardio. Easy to set up and store."
       },
       {
-        category: "Scales",
-        items: [
-          { 
-            title: "Smart Body Scale (App-connected)",
-            href: "https://amzn.to/3JcSG3r",
-            image: "./img/Smart%20Body%20weight%20Scale.jpg",
-            note: "Logs weight automatically and shows weekly trends so you don’t obsess over daily swings. Syncs with Apple/Google Health. Use on hard flooring and weigh under the same conditions (AM, post-bathroom) for reliable data."
-          },
-          { 
-            title: "Food Scale (1-gram accuracy)",
-            href: "https://amzn.to/45GyjTY",
-            image: "./img/smart%20food%20scale.jpg",
-            note: "Small, fast, and precise—ideal for dialing in protein and portions without turning meals into math class. Tare button makes recipes easy. Use for a few weeks each quarter to re-calibrate eyeballing skills."
-          }
-        ]
+        title: "Compact Treadmill (Small spaces)",
+        href: "https://amzn.to/4lzpwcd",
+        image: "./img/treadmill3.jpg",
+        desc: "Shorter deck, lightweight design, and foldable handles make this treadmill best for small homes or users under 6′0″. Smooth belt and reliable motor for everyday use."
       },
       {
-        category: "Accessories",
-        items: [
-          { 
-            title: "Adjustable Workout Bench",
-            href: "https://amzn.to/41InFuq",
-            image: "./img/workout%20bench.jpg",
-            note: "Flat-to-upright angles with quick ladder adjustment. Folds to save space and supports typical home-gym loads. Pair with adjustable dumbbells for a complete, compact strength setup."
-          },
-          { 
-            title: "Hydration Bottle with Tracker",
-            href: "https://amzn.to/47uu0gO",
-            image: "./img/water%20bottle.jpg",
-            note: "Time-stamped cues nudge you to sip consistently instead of chugging at night. Durable, leak-resistant lid is bag-friendly. If you use flavored mixes, replace every 6–12 months to keep it fresh."
-          }
-        ]
+        title: "Smart Body Scale",
+        href: "https://amzn.to/3JcSG3r",
+        image: "./img/body-scale.jpg",
+        desc: "Tracks weight, BMI, and body composition metrics over time. Syncs with mobile app so you can monitor trends and keep your fitness plan on track."
       },
       {
-        category: "Supplements",
-        items: [
-          { 
-            title: "Creatine Monohydrate (Unflavored)",
-            href: "https://amzn.to/4mnY9Dm",
-            image: "./img/Creatine.jpg",
-            note: "Evidence-based strength and training-volume support. 3–5 g daily; no cycling needed. Unflavored dissolves best in warm liquid. Expect a small increase in scale weight from muscle water—normal and useful."
-          },
-          { 
-            title: "Ready-to-Drink Protein Shake",
-            href: "https://amzn.to/416N7ts",
-            image: "./img/protein%20shake.jpg",
-            note: "High-protein, low-effort option for busy days or post-workout. Shelf-stable cartons live in your desk or car. Use to fill gaps on low-protein meals; whole food still anchors most days."
-          }
-        ]
+        title: "Food Scale (Precision tracking)",
+        href: "https://amzn.to/45GyjTY",
+        image: "./img/food-scale.jpg",
+        desc: "Accurate kitchen scale with gram and ounce measurements. Perfect for dialing in portion sizes, tracking protein intake, and supporting fat-loss or muscle-gain goals."
       },
       {
-        category: "Books",
-        items: [
-          { 
-            title: "Spiral Journal Bible (Lay-flat)",
-            href: "https://amzn.to/4mh01O8",
-            image: "./img/spiral%20bound%20Journaling%20bible.jpg",
-            note: "Durable paper with generous margins for notes and reflection. Lay-flat spiral makes daily reading practical. Pair with fine-tip pens/highlighters that don’t bleed through."
-          }
-        ]
+        title: "Adjustable Workout Bench",
+        href: "https://amzn.to/41InFuq",
+        image: "./img/workout-bench.jpg",
+        desc: "Multi-angle bench for presses, rows, and core work. Compact footprint but sturdy enough for heavy dumbbell routines. Great for a full-body home gym setup."
+      },
+      {
+        title: "Insulated Water Bottle + Tracker",
+        href: "https://amzn.to/47uu0gO",
+        image: "./img/water-bottle.jpg",
+        desc: "Keeps drinks cold, includes a time-marker so you stay hydrated throughout the day. Durable design makes it travel- and gym-friendly."
+      },
+      {
+        title: "Creatine Monohydrate",
+        href: "https://amzn.to/4mnY9Dm",
+        image: "./img/creatine.jpg",
+        desc: "Research-backed supplement that improves strength, recovery, and workout performance. Easy to mix, tasteless powder form — one of the most effective fitness supplements."
+      },
+      {
+        title: "High-Protein Shake (On-the-go)",
+        href: "https://amzn.to/416N7ts",
+        image: "./img/protein-shake.jpg",
+        desc: "Ready-to-drink protein shakes ideal for busy mornings or post-workout recovery. Balanced macros help you hit your daily protein target with convenience."
+      },
+      {
+        title: "Spiral Journal Bible",
+        href: "https://amzn.to/4mh01O8",
+        image: "./img/journal-bible.jpg",
+        desc: "Durable spiral-bound journaling Bible with wide margins for notes and reflections. Perfect for personal growth, study, and mindful reflection."
       }
     ];
 
-    // DOM refs
-    const pillbar = document.getElementById('pillbar');
     const grid = document.getElementById('grid');
-    const catTitle = document.getElementById('catTitle');
 
-    function renderPills(){
-      pillbar.innerHTML = "";
-      products.forEach((cat,i)=>{
-        const b = document.createElement('button');
-        b.className = 'pill';
-        b.setAttribute('role','tab');
-        b.setAttribute('aria-selected', i===0 ? 'true':'false');
-        b.textContent = cat.category;
-        b.addEventListener('click', ()=>selectTab(i));
-        pillbar.appendChild(b);
-      });
-    }
-
-    function placeholderSvg(){
-      return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'>
-          <defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='#dfe3ec'/><stop offset='1' stop-color='#cfd6e4'/></linearGradient></defs>
-          <rect fill='url(#g)' width='1200' height='900'/>
-          <text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Helvetica,Arial' font-size='48' fill='#6b7280'>Product image</text>
-        </svg>`
-      );
-    }
-
-    function cardTemplate(item){
-      const img = (item.image && item.image.trim()!=="") ? item.image : placeholderSvg();
-      const url = withAmazonTag(item.href);
-      return `
-        <article class="card">
-          <div class="media">
-            <img alt="${escapeHtml(item.title)}" loading="lazy" src="${img}">
-            <div class="badge">Editor’s pick</div>
+    function renderProducts(){
+      grid.innerHTML = products.map(item => `
+        <div class="card">
+          <img src="${item.image}" alt="${item.title}">
+          <div class="title">${item.title}</div>
+          <div class="desc">${item.desc}</div>
+          <div class="actions">
+            <a class="btn" href="${withAmazonTag(item.href)}" target="_blank" rel="noopener sponsored nofollow">View on Amazon</a>
+            <a class="btn secondary" href="${withAmazonTag(item.href)}" target="_blank" rel="noopener">Open ↗</a>
           </div>
-          <div class="body">
-            <div class="title">${escapeHtml(item.title)}</div>
-            ${item.note ? `<div class="desc">${escapeHtml(item.note)}</div>` : ``}
-            <div class="actions">
-              <a class="btn" href="${url}" target="_blank" rel="noopener sponsored nofollow">View on Amazon</a>
-              <a class="btn secondary" href="${url}" target="_blank" rel="noopener sponsored nofollow" aria-label="Open link in new tab">Open ↗</a>
-            </div>
-          </div>
-        </article>
-      `;
+        </div>
+      `).join('');
     }
 
-    function renderCards(index=0){
-      grid.setAttribute('aria-busy','true');
-      const group = products[index];
-      catTitle.textContent = group.category;
-      grid.innerHTML = group.items.map(cardTemplate).join('');
-      grid.setAttribute('aria-busy','false');
-    }
-
-    function selectTab(i){
-      [...pillbar.querySelectorAll('.pill')].forEach((p,idx)=>p.setAttribute('aria-selected', idx===i ? 'true':'false'));
-      renderCards(i);
-    }
-
-    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString(undefined,{year:'numeric',month:'long'});
-
-    // Boot
-    renderPills();
-    renderCards(0);
+    renderProducts();
   </script>
 </body>
 </html>
