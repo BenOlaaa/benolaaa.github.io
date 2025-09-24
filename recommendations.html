@@ -11,12 +11,16 @@
       --card:#ffffff;--edge:#e6e8ee;--shadow:0 8px 22px rgba(0,0,0,.06);
       --radius:16px;--gap:clamp(14px,2.2vw,22px);--maxw:1080px;
       --btn:#10131e;--btnText:#ffffff;
+      --pill:#e9eef7;--pillActive:#10131e;--pillActiveText:#ffffff;
+      --soft:#f6f8fc;
     }
     @media (prefers-color-scheme: dark){
       :root{
         --bg:#0b0d13;--text:#f3f6ff;--muted:#a5aec6;
         --card:#0f1422;--edge:#1b2337;--shadow:0 8px 24px rgba(0,0,0,.5);
         --btn:#f3f6ff;--btnText:#0b0d13;
+        --pill:#1b2236;--pillActive:#f3f6ff;--pillActiveText:#0b0d13;
+        --soft:#11172a;
       }
     }
     *{box-sizing:border-box}
@@ -32,13 +36,21 @@
 
     /* Intro */
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
-    .hero{padding:26px 0 10px}
+    .hero{padding:26px 0 6px}
     .hero h1{margin:0 0 6px;font-size:clamp(26px,4.6vw,40px);letter-spacing:-.02em;line-height:1.1}
     .hero p{margin:0;color:var(--muted)}
 
-    /* Sections */
-    .section{margin:28px 0}
-    .section h2{margin:0 0 12px;font-size:1.2rem;letter-spacing:.3px}
+    /* Tabs */
+    .tabs{margin:18px 0 14px}
+    .pillbar{display:flex;gap:10px;overflow:auto;padding:6px;border-radius:999px;background:var(--soft);scrollbar-width:none}
+    .pillbar::-webkit-scrollbar{display:none}
+    .pill{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--text);
+      font-weight:700;font-size:.95rem;opacity:.95;transition:all .2s ease;border:1px solid var(--edge)}
+    .pill[aria-selected="true"]{background:var(--pillActive);color:var(--pillActiveText);opacity:1;box-shadow:0 0 0 2px rgba(0,0,0,.06)}
+    .pill:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,0,0,.12)}
+
+    /* Category title */
+    .category-title{margin:8px 0 12px;font-weight:800;letter-spacing:.3px}
 
     /* Grid/Cards */
     .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
@@ -70,10 +82,17 @@
       <p>Simple, sustainable fitness. Each pick explains what it’s best for, who it isn’t for, and a tip so you can buy once and use it often.</p>
     </section>
 
-    <div id="sections"></div>
+    <!-- Tabs -->
+    <nav class="tabs" role="tablist" aria-label="Categories">
+      <div class="pillbar" id="pillbar"></div>
+    </nav>
+
+    <!-- Category title + cards -->
+    <h2 class="category-title" id="catTitle"></h2>
+    <main class="grid" id="grid" aria-live="polite" aria-busy="false"></main>
 
     <div class="foot">
-      Prices and availability can change. Links open on Amazon; my US affiliate tag is applied automatically on full Amazon URLs, and Amazon OneLink localizes Canadian clicks to your CA store.
+      Prices and availability can change. Links open on Amazon; full Amazon URLs get my US affiliate tag automatically, and Amazon OneLink localizes for Canada.
     </div>
   </div>
 
@@ -91,7 +110,6 @@
       return url;
     }
 
-    // Sections + items (longer blurbs). Make sure image filenames match your /img/ folder.
     const sections = [
       {
         title: "Treadmills & Walking Pads",
@@ -203,9 +221,25 @@
       }
     ];
 
-    const root = document.getElementById('sections');
+    // DOM
+    const pillbar = document.getElementById('pillbar');
+    const grid = document.getElementById('grid');
+    const catTitle = document.getElementById('catTitle');
 
-    function card(item){
+    function renderPills(){
+      pillbar.innerHTML = "";
+      sections.forEach((cat,i)=>{
+        const b = document.createElement('button');
+        b.className = 'pill';
+        b.setAttribute('role','tab');
+        b.setAttribute('aria-selected', i===0 ? 'true':'false');
+        b.textContent = cat.title;
+        b.addEventListener('click', ()=>selectTab(i));
+        pillbar.appendChild(b);
+      });
+    }
+
+    function cardTemplate(item){
       const url = withAmazonTag(item.href);
       return `
         <article class="card">
@@ -219,18 +253,22 @@
       `;
     }
 
-    function render(){
-      root.innerHTML = sections.map(sec => `
-        <section class="section">
-          <h2>${sec.title}</h2>
-          <div class="grid">
-            ${sec.items.map(card).join("")}
-          </div>
-        </section>
-      `).join("");
+    function renderCards(index=0){
+      grid.setAttribute('aria-busy','true');
+      const group = sections[index];
+      catTitle.textContent = group.title;
+      grid.innerHTML = group.items.map(cardTemplate).join('');
+      grid.setAttribute('aria-busy','false');
     }
 
-    render();
+    function selectTab(i){
+      [...pillbar.querySelectorAll('.pill')].forEach((p,idx)=>p.setAttribute('aria-selected', idx===i ? 'true':'false'));
+      renderCards(i);
+    }
+
+    // Boot
+    renderPills();
+    renderCards(0);
   </script>
 </body>
 </html>
