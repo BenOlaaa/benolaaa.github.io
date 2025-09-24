@@ -51,7 +51,6 @@
     .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:10px;
       font-weight:800;background:var(--btn);color:var(--btnText);border:1px solid transparent;transition:opacity .15s ease}
     .btn:hover{opacity:.9}
-    .btn.secondary{background:transparent;color:var(--text);border-color:var(--edge)}
 
     /* Footer */
     .foot{padding:26px 0 60px;color:var(--muted);font-size:.9rem;text-align:center}
@@ -61,7 +60,7 @@
   <header>
     <div class="bar">
       <div class="brand">BenO Recommends</div>
-      <div class="note">As an Amazon Associate I earn from qualifying purchases.</div>
+      <div class="note"><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.</div>
     </div>
   </header>
 
@@ -71,29 +70,28 @@
       <p>Simple, sustainable fitness. Each pick explains what it’s best for, who it isn’t for, and a tip so you can buy once and use it often.</p>
     </section>
 
-    <!-- Sections will render here -->
     <div id="sections"></div>
 
     <div class="foot">
-      Prices and availability can change. Links open on Amazon; my US affiliate tag is applied automatically and Amazon OneLink localizes for Canada.
+      Prices and availability can change. Links open on Amazon; my US affiliate tag is applied automatically on full Amazon URLs, and Amazon OneLink localizes Canadian clicks to your CA store.
     </div>
   </div>
 
   <script>
-    // ——— Helper: keep amzn.to as-is; add your US tag to full amazon URLs.
+    // Keep amzn.to links as-is; add your US tag to full amazon URLs.
     function withAmazonTag(url){
       try{
         const u = new URL(url);
-        if (/^amzn\.to$/i.test(u.hostname)) return u.toString();           // short SiteStripe link – leave untouched
-        if (/\.amazon\./i.test(u.hostname)){                                // full Amazon URL – ensure tag
+        if (/^amzn\.to$/i.test(u.hostname)) return u.toString();           // SiteStripe short link – already tagged
+        if (/\.amazon\./i.test(u.hostname)){                                // Full Amazon URL – ensure tag
           if (!u.searchParams.has("tag")) u.searchParams.set("tag","boamazon0b3-20"); // your US store ID
           return u.toString();
         }
       }catch(e){}
-      return url; // anything else (shouldn't appear here)
+      return url;
     }
 
-    // ——— Data: groups (sections) with longer descriptions
+    // Sections + items (longer blurbs). Make sure image filenames match your /img/ folder.
     const sections = [
       {
         title: "Treadmills & Walking Pads",
@@ -108,25 +106,25 @@
             title: "Starter Treadmill (Everyday walking)",
             href: "https://amzn.to/4fAeqlT",
             image: "./img/Treadmill%202.jpg",
-            desc: "Foldable frame, simple controls, and reliable belt tracking. Great for steady incline walks and casual conditioning. If you’re tall or want faster speeds, step up to a longer deck; otherwise this nails the basics at a friendly price."
+            desc: "Foldable frame, simple controls, and reliable belt tracking. Great for steady incline walks and casual conditioning. If you’re tall or want faster speeds, move up to a longer deck; otherwise this nails the basics at a friendly price without bloat."
           },
           {
             title: "Compact Treadmill (Small spaces)",
             href: "https://amzn.to/4lzpwcd",
             image: "./img/Treadmill%203.jpg",
-            desc: "Shorter deck fits tight rooms yet handles daily walking. Best for shorter stride lengths or quick step sessions. Wheels + low height make storage painless. Lube the belt every ~3 months to keep it smooth."
+            desc: "Shorter deck fits tight rooms yet handles daily walking. Best for shorter stride lengths or quick step sessions. Wheels + low height make storage painless. Lubricate the belt every ~3 months to keep it smooth and quiet."
           },
           {
             title: "Smooth-Belt Option (Comfy for long sessions)",
             href: "https://amzn.to/3UYU2kR",
             image: "./img/Treamill%205.jpg",
-            desc: "Softer deck feel and remote/app speed control are convenient when you’re at a desk. Not built for sprints—shines at consistent, low-impact walking. A nice middle ground if you want comfort without going full-size."
+            desc: "Softer deck feel and remote/app speed control are convenient at a desk. Not built for sprints—shines at consistent, low-impact walking. A good middle ground if you want comfort without going full-size or spending big."
           },
           {
             title: "Incline Walking Pad (1.5–8%)",
             href: "https://amzn.to/45CUx9i",
             image: "./img/walking%20pad.jpg",
-            desc: "Adds gentle incline to raise heart rate without raising speed—great when time is tight. Under-sofa height and wheels for easy storage. Start at 2% and progress slowly to avoid calf tightness."
+            desc: "Adds gentle incline to raise heart rate without raising speed—useful when time is tight. Under-sofa height and wheels for easy storage. Start at 2% and progress slowly to avoid calf tightness and keep cadence natural."
           }
         ]
       },
@@ -137,7 +135,7 @@
             title: "Daily Trainer Running Shoe",
             href: "https://amzn.to/4oAnXxi",
             image: "./img/Nike%20shoe.jpg",
-            desc: "Neutral, cushioned ride that works for long walks, easy jogs, and all-day wear. Breathable upper; midsole has bounce without instability. If you need motion control, choose a stability model."
+            desc: "Neutral, cushioned ride that works for long walks, easy jogs, and all-day wear. Breathable upper keeps feet cool; midsole has bounce without instability. If you need motion control, pick a stability model instead."
           }
         ]
       },
@@ -148,13 +146,13 @@
             title: "Smart Body Scale (App-connected)",
             href: "https://amzn.to/3JcSG3r",
             image: "./img/Smart%20Body%20weight%20Scale.jpg",
-            desc: "Logs weight automatically and shows weekly trends so you don’t obsess over daily swings. Syncs with Apple/Google Health. Use on hard flooring and weigh under the same conditions for reliable data."
+            desc: "Logs weight automatically and shows weekly trends so you don’t obsess over daily swings. Syncs with Apple/Google Health. Use on hard flooring and weigh under the same conditions for reliable, apples-to-apples data."
           },
           {
             title: "Food Scale (1-gram accuracy)",
             href: "https://amzn.to/45GyjTY",
             image: "./img/smart%20food%20scale.jpg",
-            desc: "Small, fast, and precise—ideal for dialing in protein and portions. Tare button makes recipes easy. Use for a few weeks each quarter to re-calibrate eyeballing skills."
+            desc: "Small, fast, and precise—ideal for dialing in protein and portions. Tare button makes recipes easy. Use for a few weeks each quarter to re-calibrate eyeballing skills without becoming obsessive."
           }
         ]
       },
@@ -165,13 +163,13 @@
             title: "Adjustable Workout Bench",
             href: "https://amzn.to/41InFuq",
             image: "./img/workout%20bench.jpg",
-            desc: "Flat-to-upright angles with quick ladder adjustment. Folds to save space and supports typical home-gym loads. Pair with adjustable dumbbells for a complete, compact strength setup."
+            desc: "Flat-to-upright angles with quick ladder adjustment. Folds to save space and supports typical home-gym loads. Pair with adjustable dumbbells for a complete, compact strength setup that covers presses, rows, and core work."
           },
           {
             title: "Hydration Bottle with Tracker",
             href: "https://amzn.to/47uu0gO",
             image: "./img/water%20bottle.jpg",
-            desc: "Time-stamped cues nudge you to sip consistently instead of chugging at night. Leak-resistant lid is bag-friendly. If you use flavored mixes, replace every 6–12 months to keep it fresh."
+            desc: "Time-stamped cues nudge you to sip consistently instead of chugging at night. Leak-resistant lid is bag-friendly. If you use flavored mixes, replace every 6–12 months to keep it fresh and odor-free."
           }
         ]
       },
@@ -182,7 +180,7 @@
             title: "Creatine Monohydrate (Unflavored)",
             href: "https://amzn.to/4mnY9Dm",
             image: "./img/Creatine.jpg",
-            desc: "Evidence-based support for strength and training volume. 3–5 g daily; no cycling needed. Unflavored dissolves best in warm liquid. Expect a small increase in scale weight from muscle water—normal and useful."
+            desc: "Evidence-based support for strength and training volume. 3–5 g daily; no cycling needed. Unflavored dissolves best in warm liquid. Expect a small uptick in scale weight from muscle water—normal and useful."
           },
           {
             title: "Ready-to-Drink Protein Shake",
@@ -199,26 +197,23 @@
             title: "Spiral Journal Bible (Lay-flat)",
             href: "https://amzn.to/4mh01O8",
             image: "./img/spiral%20bound%20Journaling%20bible.jpg",
-            desc: "Durable paper with generous margins for notes and reflection. Lay-flat spiral makes daily reading practical. Pair with non-bleed highlighters."
+            desc: "Durable paper with generous margins for notes and reflection. Lay-flat spiral makes daily reading practical. Pair with non-bleed highlighters and fine-tip pens."
           }
         ]
       }
     ];
 
-    // ——— Render
     const root = document.getElementById('sections');
 
     function card(item){
-      const img = item.image || "";
       const url = withAmazonTag(item.href);
       return `
         <article class="card">
-          <div class="media">${img ? `<img src="${img}" alt="${item.title}">` : ""}</div>
+          <div class="media"><img src="${item.image}" alt="${item.title}"></div>
           <div class="title">${item.title}</div>
           <div class="desc">${item.desc}</div>
           <div class="actions">
             <a class="btn" href="${url}" target="_blank" rel="noopener sponsored nofollow">View on Amazon</a>
-            <a class="btn secondary" href="${url}" target="_blank" rel="noopener">Open ↗</a>
           </div>
         </article>
       `;
