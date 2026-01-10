@@ -28,26 +28,31 @@
     a{color:inherit;text-decoration:none}
     img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px}
 
+    /* Header */
     header{position:sticky;top:0;z-index:40;background:var(--bg);border-bottom:1px solid var(--edge)}
     .bar{max-width:var(--maxw);margin:0 auto;padding:.7rem var(--gap);display:flex;justify-content:space-between;align-items:center}
     .brand{font-weight:800}
     .note{font-size:.85rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
+    /* Intro */
     .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gap)}
     .hero{padding:26px 0 6px}
     .hero h1{margin:0 0 6px;font-size:clamp(26px,4.6vw,40px);letter-spacing:-.02em;line-height:1.1}
     .hero p{margin:0;color:var(--muted)}
 
+    /* Tabs */
     .tabs{margin:18px 0 14px}
     .pillbar{display:flex;gap:10px;overflow:auto;padding:6px;border-radius:999px;background:var(--soft);scrollbar-width:none}
     .pillbar::-webkit-scrollbar{display:none}
     .pill{white-space:nowrap;padding:8px 14px;border-radius:999px;background:var(--pill);color:var(--text);
-      font-weight:700;font-size:.95rem;opacity:.95;transition:all .2s ease;border:1px solid var(--edge)}
+      font-weight:700;font-size:.95rem;opacity:.95;transition:all .2s ease;border:1px solid var(--edge);cursor:pointer}
     .pill[aria-selected="true"]{background:var(--pillActive);color:var(--pillActiveText);opacity:1;box-shadow:0 0 0 2px rgba(0,0,0,.06)}
     .pill:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(0,0,0,.12)}
 
+    /* Category title */
     .category-title{margin:8px 0 12px;font-weight:800;letter-spacing:.3px}
 
+    /* Grid/Cards */
     .grid{display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
     .card{display:flex;flex-direction:column;gap:12px;background:var(--card);border:1px solid var(--edge);
       border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
@@ -56,9 +61,10 @@
     .desc{color:var(--muted);font-size:.95rem}
     .actions{margin-top:auto;display:flex;gap:10px}
     .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:10px;
-      font-weight:800;background:var(--btn);color:var(--btnText);border:1px solid transparent;transition:opacity .15s ease}
+      font-weight:800;background:var(--btn);color:var(--btnText);border:1px solid transparent;transition:opacity .15s ease;text-align:center}
     .btn:hover{opacity:.9}
 
+    /* Footer */
     .foot{padding:26px 0 60px;color:var(--muted);font-size:.9rem;text-align:center}
   </style>
 </head>
@@ -76,13 +82,16 @@
       <p>Simple, sustainable fitness. Each pick explains what it’s best for, who it isn’t for, and a tip so you can buy once and use it often.</p>
     </section>
 
+    <!-- Tabs -->
     <nav class="tabs" role="tablist" aria-label="Categories">
       <div class="pillbar" id="pillbar"></div>
     </nav>
 
+    <!-- Category title + cards -->
     <h2 class="category-title" id="catTitle"></h2>
     <main class="grid" id="grid" aria-live="polite" aria-busy="false"></main>
 
+    <!-- Clean Disclosure -->
     <div class="foot">
       <p><strong>Disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.
       Prices and availability are accurate as of the time of posting and are subject to change.</p>
@@ -90,6 +99,7 @@
   </div>
 
   <script>
+    // Keep amzn.to links as-is; add your US tag to full amazon URLs.
     function withAmazonTag(url){
       try{
         const u = new URL(url);
@@ -102,21 +112,44 @@
       return url;
     }
 
+    // Your product data
     const sections = [
+      {
+        title: "Treadmills & Walking Pads",
+        items: [
+          {
+            title: "Best Budget Walking Pad (Quiet apartments)",
+            href: "https://www.amazon.com/UMAY-Treadmill-Treadmills-Capacity-Brushless/dp/B0C7C7L3R4",
+            image: "./img/Treadmill%201.jpg",
+            desc: "Compact pad with a quiet motor for 1–3 mph Zone-2 while you work or watch shows. Stores under a sofa/bed. Not for running; deck length suits most walkers up to ~6'0\". Tip: set a daily 30–60 min reminder so steps happen automatically."
+          },
+          {
+            title: "Starter Treadmill (Everyday walking)",
+            href: "https://www.amazon.com/WELLFIT-Treadmill-Heavyduty-Treadmills-Bluetooth/dp/B0DWZSKTRG",
+            image: "./img/Treadmill%202.jpg",
+            desc: "Foldable frame, simple controls, and reliable belt tracking. Great for steady incline walks and casual conditioning."
+          }
+        ]
+      },
       {
         title: "Gym wears & Shoes",
         items: [
           {
-            title: "Blooming Jelly Women's Quick-Dry Running Shorts",
-            href: "https://www.amazon.ca/Blooming-Jelly-Quick-Dry-Running-Elastic/dp/B08FXJL8LD",
-            image: "./img/lady short.jpg",
-            desc: "Stay comfortable and move freely with these women’s workout shorts. Featuring a stretchy inner spandex liner and elastic waistband, they offer flexibility for running, jumping, or bending. The side split and elastic design allow maximum mobility, while the high-waisted band flatters your shape. A secure side zipper pocket keeps keys, cards, or small essentials safe during activity. Perfect for gym sessions, running, cycling, HIIT, yoga, or casual wear."
-          },
+            title: "Daily Trainer Running Shoe",
+            href: "https://www.amazon.com/Nike-Pegasus-Womens-Running-FD2723-103/dp/B0DJ9SBPW5",
+            image: "./img/Nike%20shoe.jpg",
+            desc: "Neutral, cushioned ride that works for long walks, easy jogs, and all-day wear. Breathable upper keeps feet cool; midsole has bounce without instability."
+          }
+        ]
+      },
+      {
+        title: "Scales",
+        items: [
           {
-            title: "TENJOY Men's Running Shorts",
-            href: "https://www.amazon.ca/TENJOY-Running-Shorts-Athletic-Workout/dp/B08VHZXSLH",
-            image: "./img/men short.jpg",
-            desc: "Engineered for performance, these men’s athletic shorts feature a comfortable elastic waistband with drawcord for a custom fit. The split-leg design enhances mobility for running, gym workouts, or sports. Made from durable 92% polyester and 8% spandex shell with breathable liner, they stay lightweight and quick-dry. Double front zipper pockets keep your phone, keys, or wallet secure. Ideal for running, jogging, swimming, gym sessions, or general fitness activities."
+            title: "Smart Body Scale (App-connected)",
+            href: "https://www.amazon.com/Etekcity-Bathroom-Weighing-Bluetooth-Electronic/dp/B095YJW56C",
+            image: "./img/Smart%20Body%20weight%20Scale.jpg",
+            desc: "Logs weight automatically and shows weekly trends. Syncs with Apple/Google Health."
           }
         ]
       },
@@ -127,54 +160,47 @@
             title: "Adjustable Workout Bench",
             href: "https://www.amazon.com/BARWING-Adjustable-Assembly-Foldable-Training/dp/B07WDHNKKB",
             image: "./img/workout%20bench.jpg",
-            desc: "Flat-to-upright angles with quick ladder adjustment. Folds to save space and supports typical home-gym loads. Pair with adjustable dumbbells for a complete, compact strength setup that covers presses, rows, and core work."
-          },
-          {
-            title: "Versatile Aerobic Stepper",
-            href: "https://www.amazon.com/dp/B08CGMRY3P",
-            image: "./img/stepper.jpg",
-            desc: "The GYMMAGE Aerobic Stepper is a versatile fitness tool designed for cardio, HIIT, and strength training. Includes risers for adjustable heights, non-slip surface, and supports up to 400 lbs."
+            desc: "Flat-to-upright angles with quick ladder adjustment. Folds to save space and supports typical home-gym loads."
           }
         ]
       }
     ];
 
-    const pillbar = document.getElementById("pillbar");
-    const catTitle = document.getElementById("catTitle");
-    const grid = document.getElementById("grid");
+    const pillbar = document.getElementById('pillbar');
+    const grid = document.getElementById('grid');
+    const catTitle = document.getElementById('catTitle');
 
-    sections.forEach((section, i) => {
-      const pill = document.createElement("button");
-      pill.className = "pill";
-      pill.textContent = section.title;
-      pill.setAttribute("role","tab");
-      pill.setAttribute("aria-selected", i===0 ? "true" : "false");
-      pill.addEventListener("click", ()=>selectSection(i));
-      pillbar.appendChild(pill);
-    });
-
-    function selectSection(index){
-      sections.forEach((s, i)=>{
-        pillbar.children[i].setAttribute("aria-selected", i===index ? "true" : "false");
-      });
+    function renderCategory(index){
       const section = sections[index];
       catTitle.textContent = section.title;
-      grid.innerHTML = "";
-      section.items.forEach(item=>{
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
+      grid.innerHTML = section.items.map(item => `
+        <div class="card">
           <div class="media"><img src="${item.image}" alt="${item.title}"></div>
           <div class="title">${item.title}</div>
           <div class="desc">${item.desc}</div>
-          <div class="actions"><a class="btn" target="_blank" href="${withAmazonTag(item.href)}">See on Amazon</a></div>
-        `;
-        grid.appendChild(card);
-      });
+          <div class="actions">
+            <a class="btn" target="_blank" rel="noopener noreferrer" href="${withAmazonTag(item.href)}">Buy on Amazon</a>
+          </div>
+        </div>
+      `).join('');
     }
 
-    // Load first section
-    selectSection(0);
+    // Render tabs
+    sections.forEach((section, i) => {
+      const pill = document.createElement('button');
+      pill.className = 'pill';
+      pill.textContent = section.title;
+      pill.setAttribute('aria-selected', i===0?'true':'false');
+      pill.onclick = () => {
+        document.querySelectorAll('.pill').forEach(p=>p.setAttribute('aria-selected','false'));
+        pill.setAttribute('aria-selected','true');
+        renderCategory(i);
+      };
+      pillbar.appendChild(pill);
+    });
+
+    // Render first category by default
+    renderCategory(0);
   </script>
 </body>
 </html>
